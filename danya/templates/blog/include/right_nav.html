@@ -1,0 +1,14 @@
+
+{% load menu_tags cache %}
+
+{% cache 5000 right_nav %}
+<aside class="col-lg-4 tm-aside-col">
+    <div class="tm-post-sidebar">
+        <hr class="mb-3 tm-hr-primary">
+        {% get_categories %}
+        <hr class="mb-3 tm-hr-primary">
+        {% get_last_posts %}
+    </div>
+</aside>
+{% endcache %}
+

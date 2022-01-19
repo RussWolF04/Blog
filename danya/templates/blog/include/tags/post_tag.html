@@ -1,0 +1,14 @@
+{% load menu_tags %}
+
+{% for post in list_last_post %}
+    <h2 class="tm-mb-40 tm-post-title tm-color-primary">{{ post.category.name }}</h2>
+    <a href="{{ post.get_absolute_url }}" class="d-block tm-mb-40">
+        <figure>
+            <img src="{{ post.image.url }}" alt="Image" class="mb-3 img-fluid">
+            <figcaption class="tm-color-primary">{{ post.title }}</figcaption>
+            <p class="tm-pt-30">{{ post.text|truncatewords:6|safe }}</p>
+            <hr>
+        </figure>
+    </a>
+
+{% endfor %}

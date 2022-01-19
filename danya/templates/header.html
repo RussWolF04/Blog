@@ -1,0 +1,59 @@
+{% load static social_tags cache %}
+
+
+{% cache 5000 header %}
+<header class="tm-header" id="tm-header">
+    <div class="tm-header-wrapper">
+        <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        {# Логотип и Название Блога #}
+        <div class="tm-site-header">
+            <div class="mb-3 mx-auto tm-site-logo">
+                <i class="fas fa-times fa-2x"></i>
+                <img src="{% static 'img/ava_danya.jpg' %}" class="tm-site-logo img">
+            </div>
+            <h1 class="text-center">Swarwuk</h1>
+        </div>
+        {# Кнопки навигация #}
+        <nav class="tm-nav" id="tm-nav">
+            <ul>
+                <li class="tm-nav-item"><a href="/" class="tm-nav-link">
+                    <i class="fas fa-home"></i>
+                    Blog Home
+                </a></li>
+                <li class="tm-nav-item"><a href="{#% url 'new_post' %#}" class="tm-nav-link">
+                    <i class="fas fa-pen"></i>
+                    Добавить Пост
+                </a></li>
+                <li class="tm-nav-item"><a href="{% url 'about' %}" class="tm-nav-link">
+                    <i class="fas fa-users"></i>
+                    Обо мне
+                </a></li>
+                <li class="tm-nav-item"><a href="{% url 'contact' %}" class="tm-nav-link">
+                    <i class="far fa-comments"></i>
+                    Kонтакты
+                </a></li>
+            </ul>
+        </nav>
+        {# Мессенджеры #}
+        <div class="tm-mb-65">
+            <ul class="social_icon">
+
+            {% get_social_links as social_links %}
+            {% for item in social_links %}
+                <li class="mb-2 social_icon">
+                    <a href="{{ item.link }}" class="social_icon">
+                        <img class="social_icon" src="{{ item.icon.url }}">
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% get_about as about %}
+<!--        <p class="tm-mb-80 pr-5 text-white">-->
+<!--            Коротко обо мне и моём блоге: {{ about.mini_text|safe }}-->
+<!--        </p>-->
+    </div>
+</header>
+{% endcache %}

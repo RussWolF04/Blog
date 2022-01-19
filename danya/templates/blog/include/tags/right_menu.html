@@ -1,0 +1,20 @@
+{% load mptt_tags cache %}
+
+{% cache 5000 right_menu %}
+<h2 class="mb-4 tm-post-title tm-color-primary">Категории</h2>
+{# Categories list #}
+<div class="sidebar">
+    <ul class="tm-mb-75 pl-5 tm-category-list menu">
+        {% recursetree list_category %}
+            <li class="p_menu">
+                <a href="{% url 'post_list' node.slug %}" class="tm-color-primary">{{ node.name }}</a>
+                {% if not node.is_leaf_node %}
+                    <ul class="tm-mb-75 pl-5 tm-category-list v_menu">
+                        {{ children }}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endrecursetree %}
+    </ul>
+</div>
+{% endcache %}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+    {% load static %}
+
+        {% block content %}
+            {# форма поиска #}
+
+            {# Список статей #}
+            <div class="row tm-row">
+                {% for post in post_list %}
+                    {% if forloop.counter <= 3 and forloop.counter != 0 %}
+                        <article class="col-12 col-md-6 tm-post">
+                            <hr class="tm-hr-primary">
+                            <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+                                {# Image_anons_Post #}
+                                <div class="tm-post-link-inner">
+                                    <img src="{{ post.image.url }}" alt="Image" class="img-fluid">
+                                </div>
+
+                                <span class="position-absolute tm-new-badge">{{ post.category }}</span>
+
+                                {# Title_Post #}
+                                <h2 class="pt-2 tm-color-primary tm-post-title">
+                                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                </h2>
+                            </a>
+                            {# Text_anons_Post #}
+                            <p class="tm-pt-30">{{ post.text|truncatewords:30|safe }}</p>
+                            <a href="{{ post.get_absolute_url }}"><button type="button" class="btn btn-info">Далее</button></a>
+                            {# Date and Tag Post #}
+                            <div class="d-flex justify-content-between tm-pt-45">
+                                <span class="tm-color-primary">{{ post.category }}</span>
+                                <span class="tm-color-primary">{{ post.create_at|date:"d"}} {{ post.create_at|date:"M"}}</span>
+                            </div>
+                            <hr>
+                            {# Col_Comments and Author_Post #}
+                            <div class="d-flex justify-content-between">
+                                <span>{{ post.get_comments.count }} Comment</span>
+                                <span>{{ post.author }}</span>
+                            </div>
+                        </article>
+                    {% endif %}
+                    {% if forloop.counter > 3 %}
+                        <article class="col-12 col-md-6 tm-post">
+                            <hr class="tm-hr-primary">
+                            <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+                                {# Image_anons_Post #}
+                                <div class="tm-post-link-inner">
+                                    <img src="{{ post.image.url }}" alt="Image" class="img-fluid">
+                                </div>
+
+                                <span class="position-absolute tm-new-badge">{{ post.category }}</span>
+                                {# Title_Post #}
+                                <h2 class="pt-2 tm-color-primary tm-post-title">
+                                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                </h2>
+                            </a>
+                            {# Text_anons_Post #}
+                            <p class="tm-pt-30">{{ post.text|truncatewords:30|safe }}</p>
+                            <a href="{{ post.get_absolute_url }}"><button type="button" class="btn btn-info">Далее</button></a>
+                            {# Date and Tag Post #}
+                            <div class="d-flex justify-content-between tm-pt-45">
+                                <span class="tm-color-primary">{{ post.category }}</span>
+                                <span class="tm-color-primary">{{ post.create_at|date:"d"}} {{ post.create_at|date:"M"}}</span>
+                            </div>
+                            <hr>
+                            {# Col_Comments and Author_Post #}
+                            <div class="d-flex justify-content-between">
+                                <span>36 comments</span>
+                                <span>{{ post.author }}</span>
+                            </div>
+                        </article>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+
+        {% endblock content %}

@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}Блог{% endblock %}</title>
+	<link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/templatemo-xtra-blog.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+{# Левая часть сайта #}
+{# header #}
+{% include 'header.html' %}
+    <div class="container-fluid">
+        <main class="tm-main">
+            <!-- Search form -->
+            <div class="row tm-row">
+                <div class="col-12">
+                    <form method="GET" class="form-inline tm-mb-80 tm-search-form">
+                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+                        <button class="tm-search-button" type="submit">
+                            <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% block content %}
+
+            {% endblock content %}
+            {# Страницы #}
+            <div class="row tm-row tm-mt-100 tm-mb-75">
+                {# Кнопки "Вперед" и "Назад" #}
+                <div class="tm-prev-next-wrapper">
+                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Назад</a>
+                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Вперед</a>
+                </div>
+                {# Список нумерации страниц #}
+                <div class="tm-paging-wrapper">
+                    <span class="d-inline-block mr-3">Страницы</span>
+                    <nav class="tm-paging-nav d-inline-block">
+                        <ul>
+                            <li class="tm-paging-item active">
+                                <a href="#" class="mb-2 tm-btn tm-paging-link">1</a>
+                            </li>
+                            <li class="tm-paging-item">
+                                <a href="#" class="mb-2 tm-btn tm-paging-link">2</a>
+                            </li>
+                            <li class="tm-paging-item">
+                                <a href="#" class="mb-2 tm-btn tm-paging-link">3</a>
+                            </li>
+                            <li class="tm-paging-item">
+                                <a href="#" class="mb-2 tm-btn tm-paging-link">4</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            {# Заменить нижнюю часть сайта #}
+            <footer class="row tm-row">
+                <hr class="col-12">
+                <div class="col-md-6 col-12 tm-color-gray">
+                    Design: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">TemplateMo</a>
+                </div>
+                <div class="col-md-6 col-12 tm-color-gray tm-copyright">
+                    Copyright 2020 Xtra Blog Company Co. Ltd.
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/templatemo-script.js' %}"></script>
+</body>
+
+</html>

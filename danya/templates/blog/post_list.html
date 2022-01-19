@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post_list.first.category.name }}{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+
+{# фильтр категорий #}
+<div class="tm-mb-75 pl-5 tm-category-list">
+    <h1 class="pt-2 tm-color-primary tm-category-list">
+        <b>Категория: </b><span><q>{{ post_list.first.category.name }}</q></span>
+    </h1>
+</div>
+<hr class="tm-hr-primary tm-mb-55">
+    {# Posts #}
+<div class="row tm-row">
+
+    {% for post in post_list %}
+        <div class="col-lg-8 tm-post-col">
+            <div class="tm-post-full">
+                {# Изображение поста #}
+                <div class="tm-post">
+                    <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+                        <div class="tm-post-link-inner">
+                            <img src="{{ post.image.url }}" alt="Image" class="img-fluid">
+                        </div>
+                        {# Author #}
+                        <span class="d-flex justify-content-between tm-new-badge">
+                            {{ post.author }}
+                        </span>
+                        <span class="position-absolute tm-new-badge">
+                            {{ post.create_at|date:"d" }}
+                            {{ post.create_at|date:"M" }}
+                        </span>
+                    </a>
+                </div>
+                <div class="mb-4">
+                    {# Заголовок поста #}
+                    <h2 class="pt-2 tm-color-primary tm-post-title">
+                        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                    </h2>
+                    {# Category #}
+                    <div class="d-flex justify-content-between tm-pt-45">
+                        <span class="tm-color-primary"><b>{{ post.category }}</b></span>
+                        <span class="tm-color-primary">
+                            {{ post.create_at|date:"d" }}
+                            {{ post.create_at|date:"M" }}
+                        </span>
+                    </div>
+                    {# Анонс текста #}
+                    <p>{{ post.text|truncatewords:5|safe }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% include 'blog/include/right_nav.html' %}
+
+    {# Правая часть страницы #}
+
+</div>
+
+{% endblock content %}
